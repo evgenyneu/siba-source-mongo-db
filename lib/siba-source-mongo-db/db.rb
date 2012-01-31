@@ -32,7 +32,8 @@ module Siba::Source
           unless settings[:password].nil?
             command = command_without_password.gsub HIDE_PASSWORD_TEXT, settings[:password]
           end
-          siba_file.run_shell command, "failed to backup MongoDb: #{command_without_password}"
+          output = siba_file.run_shell command, "failed to backup MongoDb: #{command_without_password}"
+          raise Siba::Error, "failed to backup MongoDb: #{output}" if output =~ /ERROR:/
 
           if Siba::FileHelper.dir_empty?(dest_dir)
             raise Siba::Error, "Failed to backup MongoDB: dump directory is empty"
@@ -50,8 +51,16 @@ module Siba::Source
 
       def restore(from_dir)
         siba_file.run_this do
-          if Siba::FileHelper.dir_empty? from_dir
+          if Siba::FileHelper.dirs_count(from_dir) == 0
             raise Siba::Error, "Failed to restore MongoDB: backup directory is empty: #{from_dir}"
+          end
+
+          unless settings[:database].nil?
+            dirs = Siba::FileHelper.dirs from_dir
+            if dirs.size != 1
+              raise Siba::Error, "Dump should contain exactly one directory when restoring a single database"
+            end
+            from_dir = File.join from_dir, dirs[0]
           end
 
           command_without_password = %(mongorestore --drop #{get_shell_parameters} "#{from_dir}")
@@ -59,7 +68,8 @@ module Siba::Source
           unless settings[:password].nil?
             command = command_without_password.gsub HIDE_PASSWORD_TEXT, settings[:password]
           end
-          siba_file.run_shell command, "failed to restore MongoDb: #{command_without_password}"
+          output = siba_file.run_shell command, "failed to restore MongoDb: #{command_without_password}"
+          raise Siba::Error, "failed to restore MongoDb: #{output}" if output =~ /ERROR:/
         end
       end
 
@@ -79,10 +89,10 @@ module Siba::Source
 
       def db_and_collection_names
         names = []
-        names << "db #{settings[:database]}" unless settings[:database].nil?
-        names << "db #{settings[:database]}" unless settings[:database].nil?
+        names << "db: #{settings[:database]}" unless settings[:database].nil?
+        names << "collection: #{settings[:collection]}" unless settings[:collection].nil?
         out = names.join(", ")
-        our = ": " + out unless out.empty?
+        out = " > " + out unless out.empty?
         out
       end
     end

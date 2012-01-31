@@ -1,6 +1,6 @@
-# All MongoDB settings are optional
 host: "hostname:port" # port is optional
 username:
 password:
-database:
-collection:
+database: # all databases if missing
+collection: # all collections if missing
+# Note: all above MongoDB settings are optional
