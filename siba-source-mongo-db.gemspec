@@ -5,13 +5,12 @@ require "siba-source-mongo-db/version"
 Gem::Specification.new do |s|
   s.name        = "siba-source-mongo-db"
   s.version     = Siba::Source::MongoDb::VERSION
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TOD0: your@email.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "siba-source-mongo-db"
+  s.authors     = ["Evgeny Neumerzhitskiy"]
+  s.email       = ["sausageskin@gmail.com"]
+  s.homepage    = "https://github.com/evgenyneu/siba-source-mongo-db"
+  s.license     = "MIT"
+  s.summary     = %q{MongoDB backup and restore extention for SIBA utility}
+  s.description = %q{An extension for SIBA backup and restore utility. It allows to backup and restore MongoDB database.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
