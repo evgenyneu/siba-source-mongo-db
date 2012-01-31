@@ -1,2 +1,7 @@
-# A skeleton for the plugin options
-# It is used by 'siba generate' command
+# All MongoDB settings are optional
+host: "hostname:port" # port is optional
+username:
+password:
+database:
+collection:
+

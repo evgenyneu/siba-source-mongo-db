@@ -1,8 +1,5 @@
-type: mongo-db
-key: some value
-array:
-- One
-- Two
-- 3
-bool: true
-
+host: "host:post"
+username: user
+password: password
+database: database
+collection: collection
