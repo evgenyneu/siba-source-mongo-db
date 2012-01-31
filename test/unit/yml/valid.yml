@@ -1,0 +1,8 @@
+type: mongo-db
+key: some value
+array:
+- One
+- Two
+- 3
+bool: true
+
