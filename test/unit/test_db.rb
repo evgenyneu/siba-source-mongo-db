@@ -19,6 +19,11 @@ describe Siba::Source::MongoDb::Db do
     @obj.backup("/dest_dir")
   end
 
+  it "should restore" do 
+    @obj = @cls.new({})
+    @obj.restore("/from_dir")
+  end
+
   it "should call get_shell_parameters" do
     settings = {
       host: "host:port",
@@ -37,5 +42,13 @@ describe Siba::Source::MongoDb::Db do
   it "should espace for shell" do
     @obj = @cls.new({})
     @obj.escape_for_shell("hi\"").must_equal "hi\\\""
+  end
+
+  it "should call db_and_collection_names" do
+    @obj = @cls.new({})
+    @obj.db_and_collection_names.must_be_empty
+
+    @obj = @cls.new({database:"mydb"})
+    @obj.db_and_collection_names.must_include "mydb"
   end
 end

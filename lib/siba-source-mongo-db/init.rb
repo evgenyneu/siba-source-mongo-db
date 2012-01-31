@@ -25,14 +25,16 @@ module Siba::Source
       # Collect source files and put them into dest_dir
       # No return value is expected
       def backup(dest_dir)
-        logger.info "Dumping MongoDb"
+        logger.info "Dumping MongoDb#{db.db_and_collection_names}"
         @db.backup dest_dir
       end
 
       # Restore source files from_dir 
       # No return value is expected
       def restore(from_dir)
-      end
+        logger.info "Restoring MongoDb#{db.db_and_collection_names}"
+        @db.restore from_dir
+      end      
     end
   end
 end

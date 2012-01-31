@@ -14,8 +14,11 @@ describe Siba::Source::MongoDb::Db do
     @cls.new({})  
   end
 
-  it "should backup" do
+  it "should backup and restore" do
     out_dir = mkdir_in_tmp_dir "mongob"
-    @cls.new({}).backup out_dir
+    @cls.new({database: "sibatest"}).backup out_dir
+    Siba::FileHelper.dir_empty?(out_dir).must_equal false
+
+    @cls.new({database: "sibatest"}).restore out_dir
   end
 end

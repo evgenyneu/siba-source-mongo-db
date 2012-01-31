@@ -30,4 +30,5 @@ describe Siba::Source::MongoDb::Init do
   it "should call restore" do
     create_plugin("valid").restore "/from_dir"
   end
+
 end
