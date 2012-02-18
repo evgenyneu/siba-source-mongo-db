@@ -17,7 +17,7 @@ module Siba::Source
         siba_file.run_this do
           raise Siba::Error, "'mongodump' utility is not found. Please install mongodb." unless siba_file.shell_ok? "mongodump --help"
           raise Siba::Error, "'mongorestore' utility is not found. Please install mongodb." unless siba_file.shell_ok? "mongorestore --help"
-          logger.info "Mongo backup utilities verified"
+          logger.debug "Mongo backup utilities verified"
         end
       end
 
