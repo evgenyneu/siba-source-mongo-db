@@ -4,8 +4,20 @@ This is a plugin for [SIBA backup and restore utility](https://github.com/evgeny
 
 ## Installation
 
-        $ gem install siba-sourcen-mongo-db
+        $ gem install siba-source-mongo-db
 
 ## Usage
 
-Run `siba generate FILE` command to generate options file and select mongo-db as a source plugin. Edit the generated file and set your backup options.
+1. Create a configuration file:
+
+        $ siba generate mybak
+
+2. Backup:
+
+        $ siba backup mybak
+
+3. Restore:
+
+        $ siba restore mybak
+
+Run `siba` command without arguments to see the list of options.
