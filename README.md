@@ -20,4 +20,4 @@ This is a plugin for [SIBA backup and restore utility](https://github.com/evgeny
 
         $ siba restore mybak
 
-Run `siba` command without arguments to see the list of options.
+Run `siba` command without arguments to see the list of all available options.
