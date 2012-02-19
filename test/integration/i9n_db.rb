@@ -40,7 +40,7 @@ describe Siba::Source::MongoDb::Db do
 
       count_values.must_equal 1, "Database must have pre-backup value"
     ensure
-      drop_db
+      drop_db rescue nil
     end
   end  
 
