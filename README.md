@@ -1,6 +1,6 @@
 # Overview
 
-This is a plugin for [SIBA backup and restore utility](https://github.com/evgenyneu/siba). It allows to back and restore MongoDB.
+This is a plugin for [SIBA backup and restore utility](https://github.com/evgenyneu/siba). It allows to backup and restore MongoDB.
 
 ## Installation
 
